@@ -14,7 +14,8 @@
 <body>
 <header>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="red
+">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -40,5 +41,10 @@
   </div>
 </nav>
 </header>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+
 </body>
 </html>
