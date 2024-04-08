@@ -1,5 +1,7 @@
 <?php 
-require_once SOURCE."models/Auth";
+//require_once SOURCE."models/Auth";
+//require_once SOURCE."models/Products";
+
 class Validation
 {       
     public function isValid($datas)
@@ -21,7 +23,7 @@ class Validation
        // $length=strlen($data);
         $userInDB= $auth->findByUser_name($datas) ;
         $reponse=[
-            "is valid"=> true,
+            "isValid"=> true,
             "message"=> "",
         ];
         foreach($datas as $data){

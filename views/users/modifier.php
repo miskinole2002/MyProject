@@ -1,23 +1,13 @@
 
 
-    <form class="container" method="post" action="">
+<form class="container" method="post" action="">
     <?php  if(isset($message)){?>
        <div class="alert alert-danger" role="alert">
         <?= $message; ?>
       </div>
       <?php }?>
 
-    <div class="mb-3">
-    <label for="user_name" class="form-label">nom d'utilisateur  </label>
     
-    <input type="text" class="form-control" id="user_name" name="user_name" >
-    <?php  if(isset($user_name)){?>
-       <div class="alert alert-danger" role="alert">
-        <?= $user_name; ?>
-      </div>
-    <?php }?>
-
-    </div>
     <div class="mb-3">
     <label for="name" class="form-label">nom</label>
     <input type="text" class="form-control" id="name" name="name">
@@ -50,15 +40,10 @@
      
   </div>
   <div class="mb-3">
-    <label for="Password" class="form-label">Mot de passe </label>
-    <input type="password" class="form-control" id="Password" name="Password">
-    <?php  if(isset($pwd)){?>
-       <div class="alert alert-danger" role="alert">
-        <?= $pwd; ?>
-      </div>
-      <?php }?>
-
-     
+    <label for="role_id" class="form-label">role</label>
+    <input type="number" class="form-control" id="role_id" name="role_id">
+   
+    
   </div>
  
   <div class="mb-3">
@@ -73,6 +58,6 @@
   </div>
 
 
-  <button type="submit" class="btn btn-primary" name="ajout" > s'enregistrer </button>
+  <button type="submit" class="btn btn-primary" name="modifier" >modifier </button>
 </form>
 

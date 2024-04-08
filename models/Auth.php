@@ -15,6 +15,9 @@ class Auth extends Models   // elle herite de model dans le but de nous creer un
         $this->sql="SELECT * FROM ".$this->table." where user_name=:user_name";
         return $this->getLines($datas,true); // true parcequ'on effectue une recherche 
     }
-
+     public function Update_token($datas)
+     { $this->sql="UPDATE user SET token = :token WHERE user_name=:user_name";
+        return $this->getLines($datas,true);
+     }
 
 }

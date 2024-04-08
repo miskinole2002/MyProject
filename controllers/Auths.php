@@ -1,5 +1,5 @@
 <?php 
-
+//require_once"../app/Controller.php";
 
 
 class Auths extends Controller  // dans le but de faire un heritage 
@@ -11,15 +11,79 @@ class Auths extends Controller  // dans le but de faire un heritage
 
     public function login()
     {
-      $this->render("login");
+      // verifiez la connection 
+      if(isset( $_SESSION["user"]))
+      {
+
+        header("Location: ". URI ."products/index ");
+      }
+      
+      $errors=[];
+      if(isset($_POST['connect'])){
+        $pwd=$_POST['Password'];
+        unset($_POST['connect']);
+        $Valid= new Validation();
+        $Validation=$Valid->isValid($_POST);
+        if($Validation)
+        {
+          unset($_POST['Password']);
+          $Auth=new Auth();
+          $user= $Auth->findByUser_name($_POST);
+
+         //verifier si le user name existe 
+
+            if($user)
+            { //on compare les mots de passe
+              $verify=password_verify($pwd,$user->pwd);
+                    if($verify){
+                        var_dump($user->token);
+                        $token = hash('sha256', random_bytes(32));
+                        $tab=[
+                          "user_name"=>$user->user_name,
+                          "token"=>$token
+                        ];
+                        $Auth->Update_token($tab);
+                        unset($user->pwd);
+                        $_SESSION['user']=$user;
+
+                        header("Location: ". URI ."products/index ");//fonctionqui permet de changer l entete de notre url;
+
+                    }else{
+                      $errors['message2']='mot de passe incorrect veuillez reessayer ';
+                    }
+              
+
+            }else{
+                $errors['message1']='nom d utilisateur  inexistant  veuillez reessayer ';
+
+            }
+
+
+        }else{
+          $errors['message']='veuillez verifier que tous les champs sont remplis svp !!!!';
+         
+        }
+
+          
+   
+      }
+      
+      
+      $this->render("login",$errors);
        
     }
 
     public function inscription()
     {
+      if(isset( $_SESSION["user"]))
+      {
+
+        header("Location: ". URI ."product/index ");
+      }
+
       $erreurs=[];
      
-       
+      // var_dump($_POST['Password']);
 
       if(isset($_POST['ajout']))
       {  
@@ -81,22 +145,24 @@ class Auths extends Controller  // dans le but de faire un heritage
           if ($fieldValidation==true)
           {
                var_dump("ma validation est ok");
-             //  $_POST['password']=password_hash( $_POST['password'],PASSWORD_DEFAULT);
-               //var_dump( $_POST['password']);
-               $data=[
+             // $_POST['Password']
+             $pwd =password_hash( $_POST['Password'],PASSWORD_DEFAULT);
+              
+              $data=[
             
                 "user_name"=>$_POST["user_name"],
                 "email"=>$_POST["Email"],
-                "pwd"=> password_hash( $_POST['password'],PASSWORD_DEFAULT),      // $_POST['password'],
+                "pwd"=>password_hash($_POST['Password'],PASSWORD_DEFAULT),      // $_POST['password'],
                 "fname"=>$_POST["Surname"],
                 "lname"=>$_POST["name"],
                "token"=>'bonjour', 
-               "role_id"=>3,
+               "role_id"=>2,
                 "numero_telephone"=>$_POST["tel"]
             ];
 
-            var_dump($data);
-              $Auth->inscription($data);
+           var_dump($data);
+             $Auth->inscription($data);
+             header("Location: ". URI . 'auths/login');
 
           }else
           {
@@ -131,6 +197,11 @@ class Auths extends Controller  // dans le but de faire un heritage
       //  require_once("./views/layout/default.php");
     }
 
+    public function deconnexion()
+    {
+      unset($_SESSION['user']);
+      header("Location: ". URI ."products/index ");
+    }
 
 }
 

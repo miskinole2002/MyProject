@@ -10,27 +10,39 @@
      <title>Login</title>
 </head>
 <body>
-    <form class="container">
-    <div class="mb-3">
-    <label for="user_name" class="form-label">User name </label>
-    
-    <input type="text" class="form-control" id="user_name" >
-   
+    <form class="container" method="post" action="">
+    <?php  if(isset($message)){?>
        <div class="alert alert-danger" role="alert">
-       
+        <?= $message; ?>
       </div>
+      <?php }?>
+      
+      
+     
+    <div class="mb-3">
+    <label for="user_name" class="form-label">nom d'utilisateur  </label>
+    
+    <input type="text" class="form-control" id="user_name" name="user_name" >
+    <?php  if(isset($message1)){?>
+       <div class="alert alert-danger" role="alert">
+        <?= $message1; ?>
+      </div>
+      <?php }?>
+       
       
  
   </div>
   <div class="mb-3">
-    <label for="Password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="Password">
-    <div class="alert alert-danger" role="alert">
-        
+    <label for="Password" class="form-label">mot de passe </label>
+    <input type="password" class="form-control" id="Password" name="Password">
+    <?php  if(isset($message2)){?>
+       <div class="alert alert-danger" role="alert">
+        <?= $message2; ?>
       </div>
+      <?php }?>
   </div>
 
-  <button type="submit" class="btn btn-primary">Connexion</button>
+  <button type="submit" class="btn btn-primary" name="connect">Connexion</button>
 </form>
 </body>
 </html>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+define("URI","http://localhost/ecom2/MyProject/");
 define("SOURCE",str_replace("index.php","",$_SERVER['SCRIPT_FILENAME']));
  require_once SOURCE."autoload.php"; 
 // str replace permet de changer une chaine de caractere par une autre valeur 
