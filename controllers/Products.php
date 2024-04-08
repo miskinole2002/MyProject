@@ -90,12 +90,25 @@ class Products extends Controller
     //
     public function modifier()
     {
+        $product=[];
        // var_dump($_GET);
         $params = explode("/", $_GET['p']);
         $products = new Product();
      //   var_dump($params);
         $data = ['id' => $params[2]];
-        $this->render('modifier');
+       // var_dump($data);
+        $products->findProductByid($data); 
+        $tab= $products->findProductByid($data);
+        $product=[
+            'id'=>$tab->id,
+            'name'=>$tab->name,
+            'quantity'=>$tab->quantity,
+            'price'=>$tab->price,
+            'image'=>$tab->image,
+            'description'=>$tab->description
+        ]; 
+        //var_dump($product);
+        $this->render('modifier',$product);
         unset($_POST['modify']);
         $_POST['id'] = $params[2];
 
@@ -122,6 +135,7 @@ class Products extends Controller
                     'image' => $image_destination,
                     'description' => $_POST['description']
                 ];
+                $products->modifier($data);
                 var_dump($data);
                 header("Location: ". URI . 'products/index');
                 

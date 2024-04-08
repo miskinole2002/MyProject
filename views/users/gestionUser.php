@@ -1,4 +1,7 @@
+<h1 class="text-center"> TABLEAU UTILISATEURS</h1>
+
 <table class="table container">
+
     <thead>
     <tr>
         <th scope="col">iD</th>

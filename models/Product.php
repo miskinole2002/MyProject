@@ -37,8 +37,8 @@ class Product extends Models
 
         public function findProductByid($data)
         {
-            $this->sql="SELECT * FROM ".$this->table." where id = :id ";
-            return $this->getLines(); 
+            $this->sql="SELECT * FROM ".$this->table." where id =:id ";
+            return $this->getLines($data,true); 
         }
 
 }

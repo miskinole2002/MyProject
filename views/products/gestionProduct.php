@@ -1,3 +1,5 @@
+<h1 class="text-center"> TABLEAU DE PRODUITS</h1>
+
 <table class="table container">
     <thead>
     <tr>

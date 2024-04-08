@@ -30,7 +30,10 @@ public function modifyUser($datas)
         return $this->getLines($datas,true);
 }
 
-
+public function findUserById($datas){
+    $this->sql="SELECT * FROM ".$this->table." where id=:id";
+    return $this->getLines($datas,true); // true parcequ'on effectue une recherche 
+}
 
 
 

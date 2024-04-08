@@ -1,3 +1,5 @@
+<h1 class="text-center"> AJOUTER PRODUITS</h1>
+
 <form class="m-5" method="post" enctype="multipart/form-data">
 <?php  if(isset($message)){?>
        <div class="alert alert-danger" role="alert">
